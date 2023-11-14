@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Hello, world! 16:11"
+    return "Hello, world! new new new ver"
 
 @app.route('/send',methods=['post'])
 def send():
