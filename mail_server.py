@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Hello, world!"
+    return "Hello, world!2"
 
 @app.route('/send',methods=['post'])
 def send():
@@ -24,13 +24,13 @@ def send():
         try:
             sender = MailSender(mail_host,mail_user,mail_pass,sender_email,sender_nickname)
         except Exception as e:
-            return json.dumps({"code": 2002, "msg": "登录失败！请检查用户名和密码"})
+            return json.dumps({"version":"1.0.0","code": 2002, "msg": "登录失败！请检查用户名和密码"})
         
         sender.sendHTMLText([receivers],subject,msg)
-        return json.dumps({"code": 200, "msg": "发送成功"})
+        return json.dumps({"version":"1.0.0","code": 200, "msg": "发送成功"})
 
     else:
-        return json.dumps({"code": 2001, "msg": "信息不能为空！"})
+        return json.dumps({"version":"1.0.0","code": 2001, "msg": "信息不能为空！"})
 
 if __name__=='__main__':
     app.run("0.0.0.0")
