@@ -31,7 +31,7 @@ class MailSender:
         self.smtp_obj.connect(mail_host, 25)    # 25 为 SMTP 端口号
         self.smtp_obj.login(mail_user,mail_pass) 
 
-    def sendPlainText(self, receivers:list[str], subject:str, msg: str):
+    def sendPlainText(self, receivers:list, subject:str, msg: str):
         data = MIMEText(msg, 'plain', 'utf-8')
         data['From'] = Header(f"{self.sender_nickname} <{self.sender_email}>")
         data['To'] =  Header(';'.join(receivers))
@@ -39,7 +39,7 @@ class MailSender:
 
         self.smtp_obj.sendmail(self.sender_email, receivers, data.as_string())
         
-    def sendHTMLText(self, receivers:list[str], subject:str, msgHTML: str):
+    def sendHTMLText(self, receivers:list, subject:str, msgHTML: str):
         data = MIMEText(msgHTML, 'html', 'utf-8')
         data['From'] = Header(f"{self.sender_nickname} <{self.sender_email}>")
         data['To'] =  Header(';'.join(receivers))
